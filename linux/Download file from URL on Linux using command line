@@ -1,0 +1,64 @@
+There are numerous ways to download a file from a URL via the command line on Linux, and two of the best tools for the job are wget and curl. Both tools have their pros and cons, depending on the download task at hand. In this tutorial, we’ll show you how to use both commands to perform the task.
+
+
+Downloading files from the command line comes in handy on servers that don’t have a GUI, or for Linux users that simply do most of their tasks on the command line and find it speedier than opening a browser to initiate a download. Other use cases include downloading many files at once or an entire website.
+
+In this tutorial you will learn:
+
+Wget vs cURL
+How to download a file with wget
+How to download a file with cURL
+Bash script download examples
+Sometimes people get confused over the differences between wget and curl, but actually, it’s pretty simple. The confusion stems from both tools being capable of downloading files from the command line. But apart from this overlap in functionality, the commands are totally different. They are both used for different (albeit similar) things.
+
+But we’re here to learn about downloading a file from the command line. So, which tool is better for the job? Each tool is usually installed by default on any Linux distribution, so it mostly boils down to user preference.
+
+Wget may have a hair of an advantage because it’s a little more straight forward and simple to use. Wget can also download recursively. But curl supports far more protocols outside of FTP and HTTP, and also supports uploading data. As you can tell, they each have their advantages. Regardless of which one you decide to use, you’ll be able to follow along on your own system with our example commands below.
+
+How to download a file with wget
+Wget makes file downloads painless and easy. The base syntax for downloading a file is very simple:
+
+$ wget http://example.com/file.tar
+Despite lacking a GUI, wget gives us plenty information about our download, including the progress of the download, transfer speed, and estimated time of completion. The bit of output near the top of the terminal is just wget’s attempt to connect to the server to download the file. That output can be useful for troubleshooting when you’re having problems downloading a file.
+Without supplying any extra parameters in the command, wget will save the downloaded file to whatever directory your terminal is currently set to. If you want to specify where the file should be saved, you can use the -O (output) option in the command.
+
+$ wget http://example.com/file.tar -O /path/to/dir/file.tar
+How to download a file with curl
+Curl is another great utility for downloading files from a URL. By default, curl will download a file to standard output. This might be alright if you’re downloading a plain text file or if you are piping the curl command to another tool. But if you’re just downloading a file to your PC, you don’t want curl to send a bunch of garbled text to your terminal, so you should use the -o (output) option in the command.
+
+$ curl http://example.com/file.tar -o /path/to/dir/file.tar
+The output here is similar to wget’s where we’re shown the current download rate, estimated time of completion, etc. To see more examples of curl and learn what else its capable of, check out our full guide on curl.
+
+Bash script download examples
+Wget and curl are very easy to include in a bash script. In these examples, we’ll look at how to use either command to download a list of URLs in a text document.
+
+First, let’s make a download bash script for wget. You’ll need two files – one called download.sh which contains our bash script, and one called urls.txt which contains our list of URLs to files that we want to download. Each URL needs to be on its own line.
+
+Inside download.sh:
+
+#!/bin/bash
+
+while read url; do
+    wget $url
+done < urls.txt
+And inside of urls.txt, put your list of files:
+
+http://example.com/file1.tar
+http://example.com/file2.tar
+http://example.com/file3.tar
+This script will loop through our URLs file and execute the wget command for each line. We’ve kept this script very basic, but you can add as many parameters to the wget command as you’d like.
+
+After you’ve compiled a list of URLs into urls.txt and pasted the above code into download.sh with nano or your favorite text editor, give the file execute permissions and run the script:
+$ chmod +x download.sh
+$ ./download.sh
+For curl, you can follow the exact same instructions as above, but replace the wget command with curl, like so:
+
+#!/bin/bash
+
+while read url; do
+    curl $url -O
+done < urls.txt
+Notice that we’ve also appended the -O (note: the O is capitalized) option to our curl command, so curl will download the URLs as files and with their respective names. Without this option, curl would download the files to standard output.
+
+Closing Thoughts
+In this guide, we learned about two command line tools that can be used for downloading a URL on Linux: wget and curl. Both are perfect for the job and can perform the task equally well. We also saw how to download files from a Bash script. Be sure to check out their respective full length guides on our site to learn about what else these powerful tools can do.
