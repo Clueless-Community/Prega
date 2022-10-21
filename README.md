@@ -1,4 +1,4 @@
-<h1 align=center> Prega.io </h1>
+<h1 align=center><img src="http://www.animated-gifs.fr/category_body/pregnancy/pregnancy-72402835.gif" width="100" height="100" align = center/>Prega.io  </h1>
 
 <h3 align=center> You take care of your baby we will take care of your documents. 📜 </h3>
 
